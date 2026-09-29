@@ -1,0 +1,185 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        Reddy's Real Estate
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a
+            href="{% url 'home' %}"
+            class="brand"
+        >
+            <span class="brand-icon">R</span>
+
+            <span>
+                Reddy's
+                <small>REAL ESTATE</small>
+            </span>
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'properties' %}?purpose=Sale">
+                Buy
+            </a>
+
+            <a href="{% url 'properties' %}?purpose=Rent">
+                Rent
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'post_property' %}">
+                    Post Property
+                </a>
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a
+                    href="{% url 'logout' %}"
+                    class="login-btn"
+                >
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    class="login-btn"
+                >
+                    Login
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+{% if messages %}
+
+<div class="messages">
+
+    {% for message in messages %}
+
+        <div class="message">
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<footer>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>
+                Reddy's Real Estate
+            </h3>
+
+            <p>
+                Find your dream property with
+                trusted real-estate services.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'properties' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </div>
+
+        <div>
+
+            <h4>
+                Services
+            </h4>
+
+            <p>Buy Property</p>
+            <p>Rent Property</p>
+            <p>Sell Property</p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+
+        © 2026 Reddy's Real Estate.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard | Reddy's Real Estate
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-welcome">
+
+            <div>
+
+                <span>
+                    MY ACCOUNT
+                </span>
+
+                <h1>
+                    Hello,
+                    {{ user.first_name|default:user.username }} 👋
+                </h1>
+
+                <p>
+                    Manage your properties and saved listings.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'post_property' %}"
+                class="primary-btn"
+            >
+                + Post Property
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+            <div>
+                <strong>
+                    {{ my_properties.count }}
+                </strong>
+                <span>
+                    My Properties
+                </span>
+            </div>
+
+            <div>
+                <strong>
+                    {{ saved_properties.count }}
+                </strong>
+                <span>
+                    Saved Properties
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-section">
+
+            <h2>
+                My Properties
+            </h2>
+
+
+            <div class="property-grid">
+
+                {% for property in my_properties %}
+
+                <div class="property-card">
+
+                    {% if property.image %}
+
+                        <img
+                            src="{{ property.image.url }}"
+                            alt="{{ property.title }}"
+                        >
+
+                    {% else %}
+
+                        <div class="property-placeholder">
+                            🏠
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="property-card-body">
+
+                        <span class="property-purpose">
+                            {{ property.purpose }}
+                        </span>
+
+                        <h3>
+                            {{ property.title }}
+                        </h3>
+
+                        <p>
+                            📍 {{ property.city }}
+                        </p>
+
+
+                        <div class="property-bottom">
+
+                            <strong>
+                                ₹ {{ property.price }}
+                            </strong>
+
+                            <form
+                                method="POST"
+                                action="{% url 'delete_property' property.id %}"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    class="delete-btn"
+                                    type="submit"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <div class="empty-state">
+
+                    <h3>
+                        You haven't posted any property.
+                    </h3>
+
+                    <a
+                        href="{% url 'post_property' %}"
+                        class="primary-btn"
+                    >
+                        Post Your First Property
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-section">
+
+            <h2>
+                Saved Properties
+            </h2>
+
+
+            <div class="property-grid">
+
+                {% for property in saved_properties %}
+
+                <div class="property-card">
+
+                    {% if property.image %}
+
+                        <img
+                            src="{{ property.image.url }}"
+                            alt="{{ property.title }}"
+                        >
+
+                    {% else %}
+
+                        <div class="property-placeholder">
+                            🏡
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="property-card-body">
+
+                        <h3>
+                            {{ property.title }}
+                        </h3>
+
+                        <p>
+                            📍 {{ property.city }}
+                        </p>
+
+                        <div class="property-bottom">
+
+                            <strong>
+                                ₹ {{ property.price }}
+                            </strong>
+
+                            <a
+                                href="{% url 'property_detail' property.id %}"
+                            >
+                                View →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <div class="empty-state">
+
+                    <h3>
+                        No saved properties yet.
+                    </h3>
+
+                    <a
+                        href="{% url 'properties' %}"
+                        class="primary-btn"
+                    >
+                        Explore Properties
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

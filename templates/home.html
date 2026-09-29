@@ -1,0 +1,1369 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home | Reddy's Real Estate
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: #f7f8f6;
+    color: #193b32;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    width: 100%;
+    min-height: 720px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 29, 24, 0.96) 0%,
+            rgba(6, 46, 37, 0.90) 45%,
+            rgba(6, 46, 37, 0.45) 100%
+        ),
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=90");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Decorative circle */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    right: -200px;
+    top: -250px;
+
+    background: rgba(218, 187, 107, 0.12);
+}
+
+
+/* Hero container */
+
+.hero-content {
+    width: 1200px;
+
+    margin: 0 auto;
+
+    position: relative;
+    z-index: 2;
+
+    padding: 90px 0;
+}
+
+
+/* Hero text */
+
+.hero-text {
+    width: 720px;
+
+    color: white;
+}
+
+
+.hero-label {
+    display: inline-block;
+
+    padding: 9px 17px;
+
+    border-radius: 30px;
+
+    background: rgba(216,185,106,0.14);
+
+    border: 1px solid rgba(216,185,106,0.35);
+
+    color: #e1c679;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 24px;
+}
+
+
+.hero h1 {
+    margin: 0;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 76px;
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 700;
+}
+
+
+.hero h1 span {
+    color: #d9b968;
+}
+
+
+.hero-description {
+    width: 560px;
+
+    margin: 25px 0 35px;
+
+    color: rgba(255,255,255,0.78);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-panel {
+    width: 760px;
+
+    padding: 10px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.98);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.25);
+}
+
+
+.search-panel form {
+    display: grid;
+
+    grid-template-columns: 180px 1fr 155px;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.search-field {
+    padding: 7px 16px;
+}
+
+
+.search-field label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8a9692;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+.search-field select,
+.search-field input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #263d37;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.search-field input::placeholder {
+    color: #9ba5a2;
+
+    font-weight: 500;
+}
+
+
+.search-btn {
+    height: 57px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #174d40,
+            #28705d
+        );
+
+    color: white;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.search-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(23,77,64,0.35);
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.hero-stats {
+    display: flex;
+
+    gap: 60px;
+
+    margin-top: 42px;
+}
+
+
+.hero-stat {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.hero-stat strong {
+    color: white;
+
+    font-size: 27px;
+
+    font-weight: 700;
+}
+
+
+.hero-stat span {
+    margin-top: 5px;
+
+    color: rgba(255,255,255,0.58);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.section-header {
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+
+.section-header span {
+    color: #b28a3a;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.section-header h2 {
+    margin: 11px 0 12px;
+
+    color: #193d33;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 42px;
+
+    line-height: 1.2;
+}
+
+
+.section-header p {
+    width: 550px;
+
+    margin: auto;
+
+    color: #7f8b87;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.categories {
+    padding: 100px 0;
+
+    background: white;
+}
+
+
+.category-grid {
+    width: 1050px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.category {
+    position: relative;
+
+    padding: 38px 30px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid #e5ebe8;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition: all 0.35s ease;
+}
+
+
+.category:hover {
+    transform: translateY(-8px);
+
+    border-color: #d5c18d;
+
+    box-shadow:
+        0 20px 45px rgba(25,61,51,0.11);
+}
+
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 23px;
+
+    border-radius: 16px;
+
+    background: #edf5f2;
+
+    font-size: 27px;
+}
+
+
+.category h3 {
+    margin: 0 0 9px;
+
+    color: #214239;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 22px;
+}
+
+
+.category p {
+    margin: 0;
+
+    color: #84908c;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FEATURED
+========================================================= */
+
+.featured {
+    padding: 105px 0;
+
+    background: #f7f8f6;
+}
+
+
+.property-grid {
+    width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+
+.property-card {
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid #e7ecea;
+
+    box-shadow:
+        0 7px 25px rgba(24,61,51,0.05);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.property-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 20px 45px rgba(24,61,51,0.13);
+}
+
+
+/* Property image */
+
+.property-image-wrapper {
+    width: 100%;
+    height: 245px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.property-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+.property-card:hover .property-image {
+    transform: scale(1.05);
+}
+
+
+.property-purpose {
+    position: absolute;
+
+    left: 17px;
+    top: 17px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.95);
+
+    color: #195c49;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+
+/* Placeholder */
+
+.property-placeholder {
+    width: 100%;
+    height: 245px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dce9e5,
+            #edf3f0
+        );
+
+    font-size: 55px;
+}
+
+
+/* Property body */
+
+.property-card-body {
+    padding: 24px;
+}
+
+
+.property-card-body h3 {
+    margin: 0 0 9px;
+
+    color: #1d3d34;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 21px;
+}
+
+
+.location {
+    margin: 0 0 18px;
+
+    color: #84908c;
+
+    font-size: 12px;
+}
+
+
+.property-info {
+    display: flex;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-top: 1px solid #edf0ef;
+
+    border-bottom: 1px solid #edf0ef;
+
+    color: #71807b;
+
+    font-size: 11px;
+}
+
+
+.property-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 19px;
+}
+
+
+.property-bottom strong {
+    color: #183f34;
+
+    font-size: 20px;
+}
+
+
+.property-bottom a {
+    color: #a17c32;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.property-bottom a:hover {
+    color: #174d40;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.center {
+    text-align: center;
+
+    margin-top: 50px;
+}
+
+
+.outline-btn {
+    display: inline-flex;
+
+    padding: 14px 28px;
+
+    border-radius: 10px;
+
+    border: 1px solid #b8cbc4;
+
+    background: white;
+
+    color: #1c5143;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+}
+
+
+.outline-btn:hover {
+    background: #1c5143;
+
+    border-color: #1c5143;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+.primary-btn {
+    display: inline-flex;
+
+    padding: 13px 25px;
+
+    border-radius: 10px;
+
+    background: #1c5143;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    grid-column: 1 / -1;
+
+    padding: 70px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px dashed #cbd7d2;
+}
+
+
+.empty-state h3 {
+    margin: 0 0 10px;
+
+    color: #25443c;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 24px;
+}
+
+
+.empty-state p {
+    margin: 0 0 22px;
+
+    color: #84908c;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   WHY US
+========================================================= */
+
+.why-us {
+    padding: 105px 0;
+
+    background: white;
+}
+
+
+.why-grid {
+    width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.why-card {
+    padding: 32px 24px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background: #f8faf9;
+
+    border: 1px solid #edf1ef;
+
+    transition: all 0.3s ease;
+}
+
+
+.why-card:hover {
+    transform: translateY(-7px);
+
+    background: white;
+
+    box-shadow:
+        0 15px 35px rgba(25,61,51,0.10);
+}
+
+
+.why-icon {
+    width: 56px;
+    height: 56px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #eaf3ef;
+
+    color: #1b5a4a;
+
+    font-size: 23px;
+}
+
+
+.why-card h3 {
+    margin: 0 0 10px;
+
+    color: #25443c;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 18px;
+}
+
+
+.why-card p {
+    margin: 0;
+
+    color: #7e8b87;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   DESKTOP SCREEN CONTROL
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .hero-content {
+        width: 1280px;
+    }
+
+    .property-grid {
+        width: 1250px;
+    }
+
+}
+
+</style>
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero">
+
+```
+<div class="hero-content">
+
+    <div class="hero-text">
+
+        <span class="hero-label">
+            TRUSTED PROPERTY PLATFORM
+        </span>
+
+
+        <h1>
+            Find a place
+            <br>
+            you'll love to
+            <span>call home.</span>
+        </h1>
+
+
+        <p class="hero-description">
+            Discover beautiful homes, apartments and investment
+            properties. Buy, rent or sell with confidence through
+            Reddy's Real Estate.
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-panel">
+
+            <form
+                action="{% url 'properties' %}"
+                method="GET"
+            >
+
+                <div class="search-field">
+
+                    <label>
+                        Looking for
+                    </label>
+
+                    <select name="purpose">
+
+                        <option value="">
+                            Buy or Rent
+                        </option>
+
+                        <option value="Sale">
+                            Buy
+                        </option>
+
+                        <option value="Rent">
+                            Rent
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="search-field">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        name="q"
+                        placeholder="City, locality or project"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="search-btn"
+                >
+                    🔍 Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+
+                <strong>
+                    10K+
+                </strong>
+
+                <span>
+                    Properties
+                </span>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong>
+                    5K+
+                </strong>
+
+                <span>
+                    Happy Customers
+                </span>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong>
+                    25+
+                </strong>
+
+                <span>
+                    Cities
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section class="categories">
+
+```
+<div class="section-header">
+
+    <span>
+        EXPLORE
+    </span>
+
+    <h2>
+        What are you looking for?
+    </h2>
+
+    <p>
+        Find the right property according to
+        your needs and lifestyle.
+    </p>
+
+</div>
+
+
+<div class="category-grid">
+
+
+    <a
+        href="{% url 'properties' %}?purpose=Sale"
+        class="category"
+    >
+
+        <div class="category-icon">
+            🏠
+        </div>
+
+        <h3>
+            Buy a Property
+        </h3>
+
+        <p>
+            Find your dream home in the right location.
+        </p>
+
+    </a>
+
+
+
+    <a
+        href="{% url 'properties' %}?purpose=Rent"
+        class="category"
+    >
+
+        <div class="category-icon">
+            🔑
+        </div>
+
+        <h3>
+            Rent a Property
+        </h3>
+
+        <p>
+            Discover comfortable homes for your lifestyle.
+        </p>
+
+    </a>
+
+
+
+    <a
+        href="{% url 'post_property' %}"
+        class="category"
+    >
+
+        <div class="category-icon">
+            📢
+        </div>
+
+        <h3>
+            Sell Property
+        </h3>
+
+        <p>
+            Reach genuine buyers and tenants.
+        </p>
+
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     FEATURED PROPERTIES
+===================================================== -->
+
+<section class="featured">
+
+```
+<div class="section-header">
+
+    <span>
+        FEATURED
+    </span>
+
+    <h2>
+        Featured Properties
+    </h2>
+
+    <p>
+        Explore some of the latest properties
+        available on Reddy's Real Estate.
+    </p>
+
+</div>
+
+
+<div class="property-grid">
+
+
+    {% for property in featured_properties %}
+
+
+    <div class="property-card">
+
+
+        <div class="property-image-wrapper">
+
+
+            {% if property.image %}
+
+                <img
+                    src="{{ property.image.url }}"
+                    alt="{{ property.title }}"
+                    class="property-image"
+                >
+
+            {% else %}
+
+                <div class="property-placeholder">
+                    🏡
+                </div>
+
+            {% endif %}
+
+
+            <span class="property-purpose">
+                {{ property.purpose }}
+            </span>
+
+
+        </div>
+
+
+
+        <div class="property-card-body">
+
+
+            <h3>
+                {{ property.title }}
+            </h3>
+
+
+            <p class="location">
+                📍 {{ property.location }},
+                {{ property.city }}
+            </p>
+
+
+            <div class="property-info">
+
+                <span>
+                    🛏 {{ property.bedrooms }} Beds
+                </span>
+
+                <span>
+                    🛁 {{ property.bathrooms }} Baths
+                </span>
+
+                <span>
+                    📐 {{ property.area }} Sq.ft
+                </span>
+
+            </div>
+
+
+            <div class="property-bottom">
+
+                <strong>
+                    ₹ {{ property.price }}
+                </strong>
+
+
+                <a
+                    href="{% url 'property_detail' property.id %}"
+                >
+                    View Property →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    {% empty %}
+
+
+    <div class="empty-state">
+
+        <h3>
+            No featured properties yet
+        </h3>
+
+        <p>
+            Login and post your first property
+            on Reddy's Real Estate.
+        </p>
+
+        <a
+            href="{% url 'post_property' %}"
+            class="primary-btn"
+        >
+            + Post Property
+        </a>
+
+    </div>
+
+
+    {% endfor %}
+
+
+</div>
+
+
+<div class="center">
+
+    <a
+        href="{% url 'properties' %}"
+        class="outline-btn"
+    >
+        View All Properties →
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     WHY CHOOSE US
+===================================================== -->
+
+<section class="why-us">
+
+```
+<div class="section-header">
+
+    <span>
+        WHY REDDY'S
+    </span>
+
+    <h2>
+        Why choose Reddy's Real Estate?
+    </h2>
+
+    <p>
+        Everything you need to make your
+        property journey simple and convenient.
+    </p>
+
+</div>
+
+
+<div class="why-grid">
+
+
+    <div class="why-card">
+
+        <div class="why-icon">
+            ✓
+        </div>
+
+        <h3>
+            Verified Properties
+        </h3>
+
+        <p>
+            Browse property listings with
+            detailed and reliable information.
+        </p>
+
+    </div>
+
+
+
+    <div class="why-card">
+
+        <div class="why-icon">
+            🛡
+        </div>
+
+        <h3>
+            Trusted Platform
+        </h3>
+
+        <p>
+            Connect with property owners
+            and genuine customers.
+        </p>
+
+    </div>
+
+
+
+    <div class="why-card">
+
+        <div class="why-icon">
+            🔎
+        </div>
+
+        <h3>
+            Easy Search
+        </h3>
+
+        <p>
+            Find properties quickly by
+            city, locality and purpose.
+        </p>
+
+    </div>
+
+
+
+    <div class="why-card">
+
+        <div class="why-icon">
+            💬
+        </div>
+
+        <h3>
+            Direct Contact
+        </h3>
+
+        <p>
+            Connect directly with property
+            owners and interested customers.
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+{% endblock %}
