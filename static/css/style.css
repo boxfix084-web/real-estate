@@ -20,92 +20,315 @@ a {
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-.navbar {
-    height: 76px;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
+.main-navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
     z-index: 1000;
 }
 
+
 .nav-container {
-    max-width: 1200px;
-    height: 100%;
-    margin: auto;
-    padding: 0 25px;
+    width: 1200px;
+    margin: 0 auto;
+
+    min-height: 82px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.brand {
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 
-    color: #b42028;
-
-    font-size: 20px;
-    font-weight: 800;
+    text-decoration: none;
+    color: #173f35;
 }
 
-.brand small {
-    display: block;
 
-    color: #777;
-
-    font-size: 7px;
-    letter-spacing: 2px;
-}
-
-.brand-icon {
-    width: 40px;
-    height: 40px;
-
-    border-radius: 10px;
-
-    background: #b82028;
-    color: white;
+.nav-logo-icon {
+    width: 44px;
+    height: 44px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 23px;
+    background: #173f35;
+    color: #d4a84f;
+
+    border-radius: 10px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 700;
 }
+
+
+.nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+
+.nav-logo-text strong {
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    color: #173f35;
+}
+
+
+.nav-logo-text small {
+    margin-top: 5px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 700;
+
+    color: #b28a3e;
+}
+
+
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 27px;
+}
+
+
+.nav-links a {
+    position: relative;
+
+    text-decoration: none;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #344640;
+
+    transition: 0.25s ease;
+}
+
+
+.nav-links a:hover {
+    color: #b28a3e;
+}
+
+
+
+/* =========================================================
+   UNDERLINE EFFECT
+========================================================= */
+
+.nav-links > a:not(.nav-add-property):not(.nav-register):not(.nav-login)::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #b28a3e;
+
+    transition: width 0.25s ease;
+}
+
+
+.nav-links > a:not(.nav-add-property):not(.nav-register):not(.nav-login):hover::after {
+
+    width: 100%;
+}
+
+
+
+/* =========================================================
+   ADD PROPERTY BUTTON
+========================================================= */
+
+.nav-add-property {
+
+    padding: 11px 17px;
+
+    background: #173f35;
+
+    color: #ffffff !important;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 5px 15px rgba(23, 63, 53, 0.15);
+
+}
+
+
+.nav-add-property:hover {
+
+    background: #b28a3e;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+}
+
+
+
+/* =========================================================
+   USER NAME
+========================================================= */
+
+.nav-user {
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #173f35;
+
+    white-space: nowrap;
+
+}
+
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.nav-login {
+
+    padding: 9px 15px;
+
+    border: 1px solid #173f35;
+
+    border-radius: 6px;
+
+}
+
+
+.nav-login:hover {
+
+    background: #173f35;
+
+    color: #ffffff !important;
+
+}
+
+
+
+/* =========================================================
+   REGISTER BUTTON
+========================================================= */
+
+.nav-register {
+
+    padding: 10px 17px;
+
+    background: #b28a3e;
+
+    color: #ffffff !important;
+
+    border-radius: 6px;
+
+}
+
+
+.nav-register:hover {
+
+    background: #173f35;
+
+    color: #ffffff !important;
+
+}
+
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.nav-logout-form {
+
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.nav-logout {
+
+    border: none;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
 
     font-size: 14px;
     font-weight: 600;
+
+    color: #344640;
+
+    cursor: pointer;
+
+    padding: 0;
+
 }
 
-.nav-links a {
-    transition: .2s;
+
+.nav-logout:hover {
+
+    color: #b28a3e;
+
 }
 
-.nav-links a:hover {
-    color: #c32029;
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .nav-container {
+
+        width: 1280px;
+
+    }
+
+
+    .nav-links {
+
+        gap: 32px;
+
+    }
+
 }
-
-.login-btn {
-    padding: 10px 20px;
-
-    border-radius: 22px;
-
-    background: #c32029;
-    color: white !important;
-}
-
 
 /* =========================
    MESSAGES

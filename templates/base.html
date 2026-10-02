@@ -15,7 +15,7 @@
 
     <title>
         {% block title %}
-        Reddy's Real Estate
+            Reddy's Real Estate
         {% endblock %}
     </title>
 
@@ -26,77 +26,169 @@
 
 </head>
 
+
 <body>
 
-<header class="navbar">
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="main-navbar">
 
     <div class="nav-container">
 
+
+        <!-- LOGO -->
+
         <a
             href="{% url 'home' %}"
-            class="brand"
+            class="nav-logo"
         >
-            <span class="brand-icon">R</span>
 
-            <span>
-                Reddy's
-                <small>REAL ESTATE</small>
+            <span class="nav-logo-icon">
+                R
             </span>
+
+            <span class="nav-logo-text">
+
+                <strong>
+                    Reddy's
+                </strong>
+
+                <small>
+                    REAL ESTATE
+                </small>
+
+            </span>
+
         </a>
 
 
-        <nav class="nav-links">
+        <!-- NAVIGATION LINKS -->
+
+        <div class="nav-links">
+
+
+            <!-- HOME -->
 
             <a href="{% url 'home' %}">
                 Home
             </a>
 
+
+            <!-- PROPERTIES -->
+
             <a href="{% url 'properties' %}">
                 Properties
             </a>
+
+
+            <!-- BUY -->
 
             <a href="{% url 'properties' %}?purpose=Sale">
                 Buy
             </a>
 
+
+            <!-- RENT -->
+
             <a href="{% url 'properties' %}?purpose=Rent">
                 Rent
             </a>
 
+
+            <!-- ADD PROPERTY -->
+
             {% if user.is_authenticated %}
 
-                <a href="{% url 'post_property' %}">
-                    Post Property
-                </a>
-
-                <a href="{% url 'dashboard' %}">
-                    Dashboard
-                </a>
-
                 <a
-                    href="{% url 'logout' %}"
-                    class="login-btn"
+                    href="{% url 'post_property' %}"
+                    class="nav-add-property"
                 >
-                    Logout
+                    + Add Property
                 </a>
 
             {% else %}
 
                 <a
                     href="{% url 'login' %}"
-                    class="login-btn"
+                    class="nav-add-property"
                 >
-                    Login
+                    + Add Property
                 </a>
 
             {% endif %}
 
-        </nav>
+
+            <!-- USER LOGIN STATUS -->
+
+            {% if user.is_authenticated %}
+
+
+                <!-- USERNAME -->
+
+                <span class="nav-user">
+                    Hi, {{ user.username }}
+                </span>
+
+
+                <!-- LOGOUT -->
+
+                <form
+                    method="POST"
+                    action="{% url 'logout' %}"
+                    class="nav-logout-form"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="nav-logout"
+                    >
+                        Logout
+                    </button>
+
+                </form>
+
+
+            {% else %}
+
+
+                <!-- LOGIN -->
+
+                <a
+                    href="{% url 'login' %}"
+                    class="nav-login"
+                >
+                    Login
+                </a>
+
+
+                <!-- REGISTER -->
+
+                <a
+                    href="{% url 'register' %}"
+                    class="nav-register"
+                >
+                    Register
+                </a>
+
+
+            {% endif %}
+
+        </div>
 
     </div>
 
-</header>
+</nav>
 
+
+
+<!-- =========================================================
+     DJANGO MESSAGES
+========================================================= -->
 
 {% if messages %}
 
@@ -105,7 +197,9 @@
     {% for message in messages %}
 
         <div class="message">
+
             {{ message }}
+
         </div>
 
     {% endfor %}
@@ -115,14 +209,27 @@
 {% endif %}
 
 
+
+<!-- =========================================================
+     PAGE CONTENT
+========================================================= -->
+
 {% block content %}
 
 {% endblock %}
 
 
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
     <div class="footer-container">
+
+
+        <!-- COMPANY -->
 
         <div>
 
@@ -136,6 +243,9 @@
             </p>
 
         </div>
+
+
+        <!-- QUICK LINKS -->
 
         <div>
 
@@ -157,19 +267,33 @@
 
         </div>
 
+
+        <!-- SERVICES -->
+
         <div>
 
             <h4>
                 Services
             </h4>
 
-            <p>Buy Property</p>
-            <p>Rent Property</p>
-            <p>Sell Property</p>
+            <p>
+                Buy Property
+            </p>
+
+            <p>
+                Rent Property
+            </p>
+
+            <p>
+                Sell Property
+            </p>
 
         </div>
 
     </div>
+
+
+    <!-- COPYRIGHT -->
 
     <div class="copyright">
 
@@ -179,6 +303,7 @@
     </div>
 
 </footer>
+
 
 </body>
 
