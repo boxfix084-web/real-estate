@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Post Property | Reddy's Real Estate
+{% endblock %}
+
+
+{% block content %}
+
+<section class="post-page">
+
+    <div class="post-container">
+
+        <div class="post-heading">
+
+            <span>
+                LIST YOUR PROPERTY
+            </span>
+
+            <h1>
+                Post your property
+            </h1>
+
+            <p>
+                Connect with genuine buyers and tenants.
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            class="property-form"
+        >
+
+            {% csrf_token %}
+
+
+            {% for field in form %}
+
+                <div class="form-group">
+
+                    <label>
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+
+                        <small>
+                            {{ field.help_text }}
+                        </small>
+
+                    {% endif %}
+
+                    {% if field.errors %}
+
+                        <div class="field-error">
+                            {{ field.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="auth-button"
+            >
+                Publish Property
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
